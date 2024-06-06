@@ -5,6 +5,8 @@ import { PrismaClient } from "@prisma/client";
 
 import accountRouter from "./routes/account.routes.js";
 import authRouter from "./routes/auth.routes.js";
+import productRouter from "./routes/product.routes.js";
+import storeRouter from "./routes/store.routes.js";
 import staffRouter from "./routes/staff.routes.js";
 
 const prisma = new PrismaClient();
@@ -43,6 +45,8 @@ app.get("/", async (req, res) => {
     res.json(user);
 });
 
+app.use("/api/v1/store", storeRouter);
+app.use("/api/v1/products", productRouter);
 app.use("/api/v1/accounts", accountRouter);
 app.use("/api/v1/staff", staffRouter);
 app.use("/login", authRouter);
