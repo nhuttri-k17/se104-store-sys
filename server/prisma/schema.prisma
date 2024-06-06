@@ -31,6 +31,16 @@ model taikhoankhachhang {
   khachhangId String? @unique
 
 }
+model roledetail{
+  nhanvienId String
+  roleId String
+
+
+  nhanvien nhanvien @relation(fields: [nhanvienId], references: [id], onDelete: Cascade)
+  role role @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  @@id([nhanvienId, roleId])
+}
 
 model nhanvien {
   id         String      @id @default(uuid())
@@ -41,6 +51,14 @@ model nhanvien {
   ngayvaolam DateTime @default(now())
   hinhanh    String? @db.Text
   xoa Boolean @default(false)
+  role roledetail[]
+}
+
+
+model role {
+  id String @id @default(uuid())
+  ten String
+  role roledetail[]
 }
 
 model sanpham {
