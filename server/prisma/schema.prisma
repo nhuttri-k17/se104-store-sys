@@ -1,0 +1,136 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model taikhoan {
+  id       String       @id @default(uuid())
+  ten      String
+  email    String    @unique
+  password String
+  nhanvien nhanvien? @relation(fields: [nhanvienId], references: [id], onDelete: Cascade)
+  nhanvienId String? @unique
+}
+
+model taikhoankhachhang {
+  id       String       @id @default(uuid())
+  ten      String
+  email    String    @unique
+  password String
+  khachhang khachhang? @relation(fields: [khachhangId], references: [id], onDelete: Cascade)
+  khachhangId String? @unique
+
+}
+
+model nhanvien {
+  id         String      @id @default(uuid())
+  ten        String
+  vaitro     String
+  taiKhoan   taikhoan?
+  chiennluoc chienluoc[]
+  ngayvaolam DateTime @default(now())
+  hinhanh    String? @db.Text
+  xoa Boolean @default(false)
+}
+
+model sanpham {
+  id         String      @id @default(uuid())
+  tinhtrang  String
+  soluong    Int
+  sanphancuahang sanphamcuahang?
+  details    sanphamdetail?
+  detailId  String @unique
+  chitietdonhang chitietdonhang[]
+  xoa Boolean @default(false)
+}
+
+model sanphamcuahang {
+  id String @id
+  soluong Int
+  sanphamkho sanpham @relation(fields: [id], references: [id], onDelete: Cascade)
+  chitietgiohang chitietgiohang[]
+}
+
+model sanphamdetail {
+  id        String      @id @default(uuid())
+  ten        String
+  loai       String
+  hinhanh    String  @db.Text 
+  gia        Int
+  mota       String  @db.Text 
+  sanpham sanpham @relation(fields: [id], references: [detailId], onDelete: Cascade)
+}
+
+model chienluoc {
+  id String @id @default(uuid())
+  ten String
+  noidung String @db.Text
+  nguoidang nhanvien @relation(fields: [nhanvienId], references: [id])
+  nhanvienId String 
+  ngaydang DateTime @default(now())
+}
+
+model khuyenmai {
+  id String @id @default(uuid())
+  ten String
+  giatri Int
+  ngaybatdau DateTime
+  ngayketthuc DateTime
+  tinhtrang Boolean
+  donhang donhang[]
+}
+
+model khachhang {
+  id String @id @default(uuid())
+  ten String @default("chưa đặt tên")
+  email String @unique
+  hinhanh String? @db.Text
+  sdt String?
+  giohangId String @unique @default(uuid())
+  chitietgiohang chitietgiohang[] 
+  donhang donhang[]
+  ngaylap DateTime @default(now())
+  taikhoan taikhoankhachhang?
+}
+
+model chitietgiohang {
+  giohangId String
+  sanphamId String
+  soluong Int
+  sanpham sanphamcuahang @relation(fields: [sanphamId], references: [id], onDelete: Cascade)
+  giohang khachhang @relation(fields: [giohangId], references: [giohangId], onDelete: Cascade)
+
+  @@id([giohangId, sanphamId])
+}
+
+model donhang {
+  id String @id @default(uuid())
+  khachhang khachhang @relation(fields: [khachhangId], references: [id], onDelete: Cascade)
+  khachhangId String
+  ngaylap DateTime @default(now())
+  chitietdonhang chitietdonhang[]
+  tonggiatri Int
+  tinhtrang String
+  khuyenmai khuyenmai? @relation(fields: [khuyenmaiId], references: [id])
+  khuyenmaiId String?
+}
+
+model chitietdonhang {
+  donhangId String
+  sanphamId String
+  soluong Int
+  tonggiatri Int
+  donhang donhang @relation(fields: [donhangId], references: [id], onDelete: Cascade)
+  sanpham sanpham @relation(fields: [sanphamId], references: [id], onDelete: Cascade)
+  @@id([donhangId, sanphamId])
+}
