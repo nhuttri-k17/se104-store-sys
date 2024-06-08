@@ -8,7 +8,7 @@ const getAllStrategy = async (req, res) => {
         res.json(all);
     } catch (error) {
         res.status(500).json({
-            message: `Error getting strategies ${error.message}`,
+            message: `Error getting strategy ${error.message}`,
         });
     }
 };
@@ -25,7 +25,8 @@ const getStrategyDetail = async (req, res) => {
             },
         });
         if (!strategy) {
-            return res.status(404).json({ message: "Strategy not found" });
+            console.error("Strategy not found");
+            return res.status(404).json({ message: "Strategies not found" });
         }
         res.json(strategy);
     } catch (error) {
