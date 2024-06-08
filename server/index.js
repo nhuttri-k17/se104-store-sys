@@ -9,6 +9,7 @@ import authRouter from "./routes/auth.routes.js";
 import productRouter from "./routes/product.routes.js";
 import storeRouter from "./routes/store.routes.js";
 import staffRouter from "./routes/staff.routes.js";
+import strategyRouter from "./routes/strategy.routes.js";
 
 const prisma = new PrismaClient();
 
@@ -46,6 +47,7 @@ app.get("/", async (req, res) => {
     res.json(user);
 });
 
+app.use("/api/v1/strategies", strategyRouter);
 app.use("/api/v1/customers", customerRouter);
 app.use("/api/v1/store", storeRouter);
 app.use("/api/v1/products", productRouter);
