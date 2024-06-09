@@ -13,6 +13,8 @@ import storeRouter from "./routes/store.routes.js";
 import staffRouter from "./routes/staff.routes.js";
 import strategyRouter from "./routes/strategy.routes.js";
 
+import storeCustomerRouter from "./routes/store_customer.routes.js";
+
 const prisma = new PrismaClient();
 
 dotenv.config();
@@ -58,6 +60,8 @@ app.use("/api/v1/products", productRouter);
 app.use("/api/v1/accounts", accountRouter);
 app.use("/api/v1/staff", staffRouter);
 app.use("/login", authRouter);
+
+app.use("/store_customers", storeCustomerRouter);
 
 app.listen(8080, () => {
     console.log(`Server is running on port http://localhost:8080`);
