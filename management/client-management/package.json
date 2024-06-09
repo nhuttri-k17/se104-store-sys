@@ -1,5 +1,5 @@
 {
-    "name": "client-dsb",
+    "name": "client-management",
     "version": "0.1.0",
     "private": true,
     "type": "module",
@@ -64,6 +64,6 @@
         ]
     },
     "refine": {
-        "projectId": "Kkqfjn-GKITIC-2n8Byt"
+        "projectId": "DiUxNC-6fsHXI-Vvu2kE"
     }
 }
