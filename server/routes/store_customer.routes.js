@@ -1,10 +1,10 @@
 import express from "express";
 
-// import {
-//     upsertCustomer,
-//     loginCustomerAccount,
-//     registerCustomerAccount,
-// } from "../controller/auth.controller.js";
+import {
+    upsertCustomer,
+    loginCustomerAccount,
+    registerCustomerAccount,
+} from "../controller/auth.controller.js";
 import { getOrderOfCustomer } from "../controller/order.controller.js";
 // import {
 //     getCustomerByEmail,
@@ -19,11 +19,11 @@ import {
 } from "../controller/cart.controller.js";
 
 const router = express.Router();
-// router.route("/login").post(loginCustomerAccount);
-// router.route("/register").post(registerCustomerAccount);
-// router.route("/").post(upsertCustomer);
+router.route("/login").post(loginCustomerAccount);
+router.route("/register").post(registerCustomerAccount);
+router.route("/").post(upsertCustomer);
 // router.route("/:email").get(getCustomerByEmail);
-// router.route("/orders/:id").get(getOrderOfCustomer);
+router.route("/orders/:id").get(getOrderOfCustomer);
 router.route("/cart/:giohangId").get(getCartDetail);
 router.route("/cart/:giohangId").delete(clearCart);
 router.route("/cart_item/:giohangId").post(removeItem);
