@@ -4,7 +4,8 @@
     "main": "index.js",
     "type": "module",
     "scripts": {
-        "start": "nodemon index"
+        "start": "nodemon index",
+        "build": "prisma generate && nodemon index"
     },
     "keywords": [],
     "author": "",
