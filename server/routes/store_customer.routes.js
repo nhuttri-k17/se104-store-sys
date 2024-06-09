@@ -5,7 +5,7 @@ import express from "express";
 //     loginCustomerAccount,
 //     registerCustomerAccount,
 // } from "../controller/auth.controller.js";
-// import { getOrderOfCustomer } from "../controller/order.controller.js";
+import { getOrderOfCustomer } from "../controller/order.controller.js";
 // import {
 //     getCustomerByEmail,
 //     updateCustomerInfo,
