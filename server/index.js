@@ -3,6 +3,7 @@ import * as dotenv from "dotenv";
 import cors from "cors";
 import { PrismaClient } from "@prisma/client";
 
+import orderRouter from "./routes/order.routes.js";
 import personalRouter from "./routes/personal.routes.js";
 import promotionRouter from "./routes/promotion.routes.js";
 import customerRouter from "./routes/customer.routes.js";
@@ -51,6 +52,7 @@ app.get("/", async (req, res) => {
     res.json(user);
 });
 
+app.use("/api/v1/orders", orderRouter);
 app.use("/me", personalRouter);
 app.use("/api/v1/promotions", promotionRouter);
 app.use("/api/v1/strategies", strategyRouter);
