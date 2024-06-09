@@ -3,18 +3,21 @@ import * as dotenv from "dotenv";
 import cors from "cors";
 import { PrismaClient } from "@prisma/client";
 
-import orderRouter from "./routes/order.routes.js";
-import personalRouter from "./routes/personal.routes.js";
-import promotionRouter from "./routes/promotion.routes.js";
-import customerRouter from "./routes/customer.routes.js";
-import accountRouter from "./routes/account.routes.js";
-import authRouter from "./routes/auth.routes.js";
 import productRouter from "./routes/product.routes.js";
-import storeRouter from "./routes/store.routes.js";
+import authRouter from "./routes/auth.routes.js";
+import accountRouter from "./routes/account.routes.js";
+import personalRouter from "./routes/personal.routes.js";
 import staffRouter from "./routes/staff.routes.js";
 import strategyRouter from "./routes/strategy.routes.js";
+import promotionRouter from "./routes/promotion.routes.js";
+import customerRouter from "./routes/customer.routes.js";
+import storeRouter from "./routes/store.routes.js";
+import dashboardRouter from "./routes/dashboard.routes.js";
+import orderRouter from "./routes/order.routes.js";
 
 import storeCustomerRouter from "./routes/store_customer.routes.js";
+import storeproductRouter from "./routes/store_product.routes.js";
+import storepromo from "./routes/store_promo.routes.js";
 
 const prisma = new PrismaClient();
 
@@ -52,6 +55,7 @@ app.get("/", async (req, res) => {
     res.json(user);
 });
 
+app.use("/api/v1/dashboard", dashboardRouter);
 app.use("/api/v1/orders", orderRouter);
 app.use("/me", personalRouter);
 app.use("/api/v1/promotions", promotionRouter);
@@ -63,6 +67,8 @@ app.use("/api/v1/accounts", accountRouter);
 app.use("/api/v1/staff", staffRouter);
 app.use("/login", authRouter);
 
+app.use("/store_products", storeproductRouter);
+app.use("/store_promotions", storepromo);
 app.use("/store_customers", storeCustomerRouter);
 
 app.listen(8080, () => {
