@@ -5,7 +5,7 @@ import { useStateContext } from "@/context/StateContext";
 import clsx from "clsx";
 import { useSession } from "next-auth/react";
 
-const CartItem = ({ item }) => {
+const CartItem = ({ item }: any) => {
     const { data: session } = useSession();
     const { toggleCartItemQuanitity, onRemove } = useStateContext();
 
