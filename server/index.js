@@ -30,7 +30,7 @@ app.use(express.json({ limit: "50mb" }));
 app.get("/", async (req, res) => {
     const emailExist = await prisma.taikhoan.findFirst({
         where: {
-            email: "alice@gami9l.com",
+            email: "alice@gmail.com",
         },
     });
     if (emailExist) {
@@ -41,14 +41,14 @@ app.get("/", async (req, res) => {
         data: {
             ten: "Admin",
             vaitro: "admin",
-            hinhanh: "https://i.imgur.com/2u6bZp0.jpg",
+            hinhanh: "https://i.pravatar.cc/300",
         },
     });
     const user = await prisma.taikhoan.create({
         data: {
             nhanvienId: admin.id,
             ten: "Alice",
-            email: "alice@gami9l.com",
+            email: "alice@gmail.com",
             password: "1234567",
         },
     });
@@ -72,5 +72,7 @@ app.use("/store_promotions", storepromo);
 app.use("/store_customers", storeCustomerRouter);
 
 app.listen(8080, () => {
-    console.log(`Server is running on port http://localhost:8080`);
+    console.log(
+        `Server is running on port if you run local http://localhost:8080`
+    );
 });
