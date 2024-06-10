@@ -3,6 +3,7 @@ import type { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { DefaultSession } from "next-auth";
+import { baseUrl } from "../../../constants/url";
 
 declare module "next-auth" {
     /**
@@ -40,7 +41,7 @@ export const authOptions: NextAuthOptions = {
                 },
                 password: { label: "Password", type: "password" },
             },
-            async authorize(credentials) {
+            async authorize(credentials: any) {
                 const email = credentials?.email;
                 const password = credentials?.password;
 
@@ -50,7 +51,7 @@ export const authOptions: NextAuthOptions = {
                 // }
 
                 const response = await fetch(
-                    "http://localhost:8080/store_customers/login",
+                    `${baseUrl}/store_customers/login`,
                     {
                         method: "POST",
                         body: JSON.stringify({
@@ -90,7 +91,7 @@ export const authOptions: NextAuthOptions = {
             const emailUser = session.user.email;
 
             const khachhang = await fetch(
-                `http://localhost:8080/store_customers/${emailUser}`
+                `${baseUrl}/store_customers/${emailUser}`
             ).then((res) => res.json());
 
             session.user.id = khachhang.id;

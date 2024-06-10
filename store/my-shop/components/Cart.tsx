@@ -10,11 +10,11 @@ import { TiDeleteOutline } from "react-icons/ti";
 import toast from "react-hot-toast";
 import clsx from "clsx";
 
-import { useStateContext } from "@/context/StateContext";
+import { useStateContext } from "../context/StateContext";
 import CartItem from "./CartItem";
 
 const Cart = () => {
-    const cartRef = useRef();
+    const cartRef = useRef<HTMLDivElement>(null);
     const {
         totalPrice,
         totalQuantities,
@@ -66,7 +66,7 @@ const Cart = () => {
                 <div className="product-container">
                     {cartItems.length >= 1 &&
                         cartItems.map(
-                            (item) =>
+                            (item: any) =>
                                 item && <CartItem key={item.id} item={item} />
                         )}
                 </div>
