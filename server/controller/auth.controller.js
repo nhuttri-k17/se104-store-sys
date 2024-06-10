@@ -47,6 +47,8 @@ const loginCustomerAccount = async (req, res) => {
 
         if (!account) {
             return res.status(404).json({ message: "Account not found" });
+        } else if (account.email !== email) {
+            return res.status(401).json({ message: "Account is incorrect" });
         } else if (!isPasswordValid) {
             return res.status(401).json({ message: "Password is incorrect" });
         }
