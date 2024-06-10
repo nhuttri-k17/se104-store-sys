@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { ProductProp } from "../interface/model";
-import { itemGenres } from "@/constants/itemGenres";
+import { itemGenres } from "../constants/itemGenres";
 
 const ProductCard = ({
     product: { id, ten, gia, hinhanh, loai, soluong },

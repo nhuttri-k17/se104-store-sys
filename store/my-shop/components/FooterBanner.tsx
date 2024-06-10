@@ -1,5 +1,5 @@
 import React from "react";
-import footerBanner from "@/constants/footerBanner";
+import footerBanner from "../constants/footerBanner";
 import Image from "next/image";
 import Link from "next/link";
 

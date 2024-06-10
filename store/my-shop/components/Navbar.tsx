@@ -3,7 +3,7 @@ import Link from "next/link";
 import { AiOutlineShopping } from "react-icons/ai";
 
 import { Cart, Searchbar } from "./";
-import { useStateContext } from "@/context/StateContext";
+import { useStateContext } from "../context/StateContext";
 import clsx from "clsx";
 import { useRouter } from "next/router";
 import { useSession, signOut } from "next-auth/react";

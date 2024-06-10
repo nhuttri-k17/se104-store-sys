@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import heroBanner from "@/constants/heroBanner";
+import heroBanner from "../constants/heroBanner";
 import Image from "next/image";
 
 const HeroBanner = () => {

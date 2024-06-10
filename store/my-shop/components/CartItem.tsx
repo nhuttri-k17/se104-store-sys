@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { TiDeleteOutline } from "react-icons/ti";
-import { useStateContext } from "@/context/StateContext";
+import { useStateContext } from "../context/StateContext";
 import clsx from "clsx";
 import { useSession } from "next-auth/react";
 
