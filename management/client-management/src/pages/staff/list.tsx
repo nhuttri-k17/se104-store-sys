@@ -11,6 +11,7 @@ import ClearIcon from "@mui/icons-material/Clear";
 import SearchIcon from "@mui/icons-material/Search";
 import { escapeRegExp } from "@mui/x-data-grid/utils/utils";
 import { isQuanLy } from "../../utils/validateRole";
+import { Indent } from "../../interfaces/common";
 
 interface QuickSearchToolbarProps {
     clearSearch: () => void;
@@ -81,7 +82,7 @@ const StaffList = () => {
     const [searchText, setSearchText] = useState("");
     const [rows, setRows] = useState<any[]>(staffData);
 
-    const { data: user } = useGetIdentity();
+    const { data: user } = useGetIdentity<Indent>();
     const right = isQuanLy(user?.vaitro);
 
     if (!right) {

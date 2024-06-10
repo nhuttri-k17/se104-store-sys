@@ -11,6 +11,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { escapeRegExp } from "@mui/x-data-grid/utils/utils";
 import { format } from "date-fns";
 import { isTiepThi } from "../../utils/validateRole";
+import { Indent } from "../../interfaces/common";
 
 interface QuickSearchToolbarProps {
     clearSearch: () => void;
@@ -60,7 +61,7 @@ const PromotionList = () => {
     const navigate = useNavigate();
     const { mutate } = useDelete();
 
-    const { data: user } = useGetIdentity();
+    const { data: user } = useGetIdentity<Indent>();
     const right = isTiepThi(user?.vaitro);
 
     const handleDeleteProperty = (uid: string) => {

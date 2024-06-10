@@ -4,6 +4,7 @@ import { useForm } from "@refinedev/react-hook-form";
 import { FieldValues } from "react-hook-form";
 import FormStrategy from "../../components/common/FormStrategy";
 import { isTiepThi } from "../../utils/validateRole";
+import { Indent } from "../../interfaces/common";
 
 const StrategyCreate = () => {
     const {
@@ -12,7 +13,7 @@ const StrategyCreate = () => {
         handleSubmit,
     } = useForm();
 
-    const { data: user } = useGetIdentity();
+    const { data: user } = useGetIdentity<Indent>();
     const right = isTiepThi(user?.vaitro);
     if (!right) {
         return <div>Bạn không có quyền truy cập trang này</div>;

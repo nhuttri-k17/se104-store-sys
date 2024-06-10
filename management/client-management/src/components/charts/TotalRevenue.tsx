@@ -14,9 +14,19 @@ import { TotalRevenueOptions, TotalRevenueSeries } from "./chart.config";
 //     monthlyRevenue: [];
 // }
 
-const TotalRevenue = ({ totalThisMonth, totalLastMonth, datas }) => {
+const TotalRevenue = ({
+    totalThisMonth,
+    totalLastMonth,
+    datas,
+}: {
+    totalThisMonth: number | undefined;
+    totalLastMonth: number | undefined;
+    datas: number[];
+}) => {
+    const totalThisMonths = totalThisMonth || 0;
+    const totalLastMonths = totalLastMonth || 0;
     const percentage = (
-        ((totalThisMonth - totalLastMonth) / totalLastMonth) *
+        ((totalThisMonths - totalLastMonths) / totalLastMonths) *
         100
     ).toFixed(3);
     const [monthlyRevenue, setMonthlyRevenue] = React.useState([
@@ -51,14 +61,14 @@ const TotalRevenue = ({ totalThisMonth, totalLastMonth, datas }) => {
             </Typography>
 
             <Stack my="20px" direction="row" gap={4} flexWrap="wrap">
-                {totalThisMonth > totalLastMonth ? (
+                {totalThisMonths > totalLastMonths ? (
                     <>
                         <Typography
                             fontSize={28}
                             fontWeight={700}
                             color="#11142d"
                         >
-                            ${totalThisMonth}
+                            ${totalThisMonths}
                         </Typography>
                         <Stack direction="row" alignItems="center" gap={1}>
                             <ArrowCircleUpRounded

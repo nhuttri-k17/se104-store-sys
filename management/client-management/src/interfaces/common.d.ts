@@ -1,5 +1,10 @@
 import dayjs from "dayjs";
 
+export interface Indent {
+    vaitro: string;
+    id: string;
+}
+
 export interface CustomButtonProps {
     type?: string;
     title: string;
@@ -114,7 +119,7 @@ export interface FormStaffProps {
     iSEdit?: boolean;
     handleImageChange: (file) => void;
     image: { name: string; url: string };
-    id?: string | undefined;
+    id?: string | undefined | BaseKey | number;
     vaitro?: string;
     right?: boolean;
 }

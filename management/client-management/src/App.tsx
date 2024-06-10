@@ -66,6 +66,7 @@ import CustomerCreate from "./pages/customers/create";
 import StoreProductList from "./pages/store/list";
 import HomePage from "./pages";
 import StoreProductEdit from "./pages/store/edit";
+import { baseUrl } from "./constants/url";
 
 function App() {
     return (
@@ -80,9 +81,7 @@ function App() {
                     <RefineSnackbarProvider>
                         <DevtoolsProvider>
                             <Refine
-                                dataProvider={dataProvider(
-                                    "http://localhost:8080/api/v1"
-                                )}
+                                dataProvider={dataProvider(`${baseUrl}/api/v1`)}
                                 notificationProvider={notificationProvider}
                                 routerProvider={routerBindings}
                                 authProvider={authProvider}

@@ -1,6 +1,5 @@
 import { Header } from "./header";
 // common
-import Profile from "./common/Profile";
 import PropertyCard from "./common/PropertyCard";
 import CustomButton from "./common/CustomButton";
 
@@ -16,7 +15,6 @@ import AgentCard from "./agent/AgentCard";
 import TopAgent from "./home/TopAgent";
 
 export {
-    Profile,
     PropertyCard,
     CustomButton,
     PieChart,

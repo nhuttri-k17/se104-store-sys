@@ -6,6 +6,7 @@ import { FieldValues } from "react-hook-form";
 import FormStrategy from "../../components/common/FormStrategy";
 
 import { format } from "date-fns";
+import { Indent } from "../../interfaces/common";
 
 const StrategyEdit = () => {
     const {
@@ -15,7 +16,7 @@ const StrategyEdit = () => {
     } = useForm();
     const strategyData = queryResult?.data?.data;
 
-    const { data: user } = useGetIdentity();
+    const { data: user } = useGetIdentity<Indent>();
     const right = user?.vaitro === "tiepthi";
 
     const onFinishHandler = async (data: FieldValues) => {

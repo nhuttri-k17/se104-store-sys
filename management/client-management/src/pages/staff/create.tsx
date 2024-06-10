@@ -4,6 +4,7 @@ import { FieldValues, Form } from "react-hook-form";
 import FormStaff from "../../components/common/FormStaff";
 import { useGetIdentity } from "@refinedev/core";
 import { isQuanLy } from "../../utils/validateRole";
+import { Indent } from "../../interfaces/common";
 
 const StaffCreate = () => {
     const [productImage, setPropertyImage] = useState({ name: "", url: "" });
@@ -34,7 +35,7 @@ const StaffCreate = () => {
         );
     };
 
-    const { data: user } = useGetIdentity();
+    const { data: user } = useGetIdentity<Indent>();
     const right = isQuanLy(user?.vaitro);
 
     return (

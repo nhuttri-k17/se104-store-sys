@@ -4,6 +4,7 @@ import FormAccount from "../../components/common/FormAccount";
 import React, { useEffect } from "react";
 import { FieldValues } from "react-hook-form";
 import { isKyThuat } from "../../utils/validateRole";
+import { Indent } from "../../interfaces/common";
 
 const AccountEdit = () => {
     const {
@@ -25,7 +26,7 @@ const AccountEdit = () => {
 
     const data = queryResult?.data?.data;
 
-    const { data: user } = useGetIdentity();
+    const { data: user } = useGetIdentity<Indent>();
     const right = isKyThuat(user?.vaitro);
     if (data && data?.email === "alice@gami9l.com") {
         return <div>Bạn không thể chỉnh sửa tài khoản này</div>;

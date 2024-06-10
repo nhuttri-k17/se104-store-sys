@@ -11,7 +11,7 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
-import { FormPropEdit } from "../../interfaces/common";
+import { FormPropEdit, Indent } from "../../interfaces/common";
 import CustomButton from "../../components/common/CustomButton";
 import { FieldValues } from "react-hook-form";
 import { useGetIdentity } from "@refinedev/core";
@@ -34,7 +34,7 @@ export const OrderEdit = () => {
         });
     };
 
-    const { data: user } = useGetIdentity();
+    const { data: user } = useGetIdentity<Indent>();
     const right = isBanHang(user?.vaitro);
 
     if (!right) {
@@ -220,7 +220,7 @@ export const OrderEdit = () => {
                         </Typography>
 
                         {orderData?.chitietdonhang.map(
-                            (item, index: number) => (
+                            (item: any, index: number) => (
                                 <Grid container spacing={3} width="100%">
                                     <Grid item xs={2}>
                                         <Typography>

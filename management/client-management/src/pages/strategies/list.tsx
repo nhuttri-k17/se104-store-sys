@@ -11,6 +11,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import { escapeRegExp } from "@mui/x-data-grid/utils/utils";
 import { format } from "date-fns";
 import { isTiepThi } from "../../utils/validateRole";
+import { Identifier } from "react-admin";
+import { Indent } from "../../interfaces/common";
 
 interface QuickSearchToolbarProps {
     clearSearch: () => void;
@@ -80,7 +82,7 @@ const StrategyList = () => {
     };
 
     const strategiesData = data?.data ?? [];
-    const { data: user } = useGetIdentity();
+    const { data: user } = useGetIdentity<Indent>();
     const right = isTiepThi(user?.vaitro);
 
     const [searchText, setSearchText] = useState("");

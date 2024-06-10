@@ -5,6 +5,7 @@ import FormPromotion from "../../components/common/FormPromotion";
 import dayjs from "dayjs";
 import { useGetIdentity } from "@refinedev/core";
 import { isTiepThi } from "../../utils/validateRole";
+import { Indent } from "../../interfaces/common";
 
 const PromotionEdit = () => {
     const {
@@ -16,7 +17,7 @@ const PromotionEdit = () => {
         formState: { errors },
     } = useForm();
     const promo = queryResult?.data?.data;
-    const { data: user } = useGetIdentity();
+    const { data: user } = useGetIdentity<Indent>();
     const right = isTiepThi(user?.vaitro);
     const onFinishHandler = async (data: FieldValues) => {
         await onFinish({

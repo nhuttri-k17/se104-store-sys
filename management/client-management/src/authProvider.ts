@@ -1,13 +1,21 @@
 import { Email } from "@mui/icons-material";
 import { AuthBindings } from "@refinedev/core";
 import { log } from "console";
+import { baseUrl } from "./constants/url";
 
 export const TOKEN_KEY = "refine-auth";
+interface Identity {
+    id: string;
+    name: string;
+    avatar: string;
+    vaitro: string;
+    // add other properties as needed
+}
 
 export const authProvider: AuthBindings = {
     login: async ({ username, email, password }) => {
         if ((username || email) && password) {
-            const response = await fetch("http://localhost:8080/login", {
+            const response = await fetch(`${baseUrl}/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ username, email, password }),
@@ -53,7 +61,7 @@ export const authProvider: AuthBindings = {
     getPermissions: async () => null,
     getIdentity: async () => {
         const token = localStorage.getItem(TOKEN_KEY);
-        const response = await fetch("http://localhost:8080/me", {
+        const response = await fetch(`${baseUrl}/me`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ id: token }),

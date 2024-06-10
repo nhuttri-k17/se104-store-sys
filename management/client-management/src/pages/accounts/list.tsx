@@ -11,6 +11,7 @@ import ClearIcon from "@mui/icons-material/Clear";
 import SearchIcon from "@mui/icons-material/Search";
 import { escapeRegExp } from "@mui/x-data-grid/utils/utils";
 import { isKyThuat } from "../../utils/validateRole";
+import { Indent } from "../../interfaces/common";
 
 interface QuickSearchToolbarProps {
     clearSearch: () => void;
@@ -61,7 +62,7 @@ export const AccountList = () => {
     const navigate = useNavigate();
     const { mutate } = useDelete();
 
-    const { data: user } = useGetIdentity();
+    const { data: user } = useGetIdentity<Indent>();
     const right = isKyThuat(user?.vaitro);
 
     if (!right) {

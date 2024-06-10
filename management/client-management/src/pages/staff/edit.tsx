@@ -4,6 +4,7 @@ import { useForm } from "@refinedev/react-hook-form";
 import { FieldValues } from "react-hook-form";
 import { useGetIdentity } from "@refinedev/core";
 import { isQuanLy } from "../../utils/validateRole";
+import { Indent } from "../../interfaces/common";
 
 const StaffEdit = () => {
     const [productImage, setPropertyImage] = useState({ name: "", url: "" });
@@ -33,7 +34,7 @@ const StaffEdit = () => {
         );
     };
 
-    const { data: user } = useGetIdentity();
+    const { data: user } = useGetIdentity<Indent>();
     const right = isQuanLy(user?.vaitro);
 
     return (

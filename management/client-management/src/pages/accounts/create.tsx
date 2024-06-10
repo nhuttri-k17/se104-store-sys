@@ -4,6 +4,7 @@ import { useForm } from "@refinedev/react-hook-form";
 import FormAccount from "../../components/common/FormAccount";
 import { useGetIdentity } from "@refinedev/core";
 import { isKyThuat } from "../../utils/validateRole";
+import { Indent } from "../../interfaces/common";
 
 const AccountCreate = () => {
     const {
@@ -14,7 +15,7 @@ const AccountCreate = () => {
         formState: { errors },
     } = useForm();
 
-    const { data: user } = useGetIdentity();
+    const { data: user } = useGetIdentity<Indent>();
     const right = isKyThuat(user?.vaitro);
 
     if (!right) {

@@ -4,6 +4,7 @@ import { useForm } from "@refinedev/react-hook-form";
 import { FieldValues } from "react-hook-form";
 import FormPromotion from "../../components/common/FormPromotion";
 import { isTiepThi } from "../../utils/validateRole";
+import { Indent } from "../../interfaces/common";
 
 const PromotionCreate = () => {
     const {
@@ -15,7 +16,7 @@ const PromotionCreate = () => {
         formState: { errors },
     } = useForm();
 
-    const { data: user } = useGetIdentity();
+    const { data: user } = useGetIdentity<Indent>();
     const right = isTiepThi(user?.vaitro);
     if (!right) {
         return <div>Bạn không có quyền truy cập trang này</div>;

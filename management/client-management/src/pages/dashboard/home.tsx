@@ -9,12 +9,23 @@ import {
 
 import { Typography, Box, Stack } from "@mui/material";
 import { isQuanLy } from "../../utils/validateRole";
+import { Indent } from "../../interfaces/common";
 
+interface Stat {
+    total_sale: number;
+    customer: number;
+    this_month_customer: number;
+    this_month_sale: number;
+    last_month_sale: number;
+    top_product_sale: any[];
+    year: { tonggiatri: number }[];
+}
 const DashboardHome = () => {
     const {
         tableQueryResult: { data, isLoading, isError },
     } = useTable();
-    const stat = data?.data ?? {};
+
+    const stat = (data?.data ?? {}) as Partial<Stat>;
     const totalRevenue = stat?.total_sale;
     const totalCustomer = stat?.customer;
     const newCustomer = stat?.this_month_customer;
@@ -26,7 +37,7 @@ const DashboardHome = () => {
     const productSoldTop5ThisMonth = stat?.top_product_sale || [];
     const yearData = stat?.year?.map(({ tonggiatri }) => tonggiatri) || [];
 
-    const { data: quanly } = useGetIdentity();
+    const { data: quanly } = useGetIdentity<Indent>();
     const right = isQuanLy(quanly?.vaitro);
 
     if (!right) {

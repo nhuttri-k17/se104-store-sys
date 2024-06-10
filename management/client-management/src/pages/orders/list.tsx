@@ -11,6 +11,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { escapeRegExp } from "@mui/x-data-grid/utils/utils";
 import { format } from "date-fns";
 import { isBanHang } from "../../utils/validateRole";
+import { Indent } from "../../interfaces/common";
 
 interface QuickSearchToolbarProps {
     clearSearch: () => void;
@@ -95,7 +96,7 @@ export const OrderList = () => {
         setRows(filteredRows);
     };
 
-    const { data: user } = useGetIdentity();
+    const { data: user } = useGetIdentity<Indent>();
     const right = isBanHang(user?.vaitro);
 
     React.useEffect(() => {

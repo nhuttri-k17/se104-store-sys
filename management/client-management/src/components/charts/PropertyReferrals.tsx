@@ -48,7 +48,13 @@ interface PropertyReferralsProps {
     totalThisMonth: number;
 }
 
-const PropertyReferrals = ({ productSoldTop5ThisMonth, totalThisMonth }) => {
+const PropertyReferrals = ({
+    productSoldTop5ThisMonth,
+    totalThisMonth,
+}: {
+    productSoldTop5ThisMonth: any[];
+    totalThisMonth: number | undefined;
+}) => {
     const colors = ["#6C5DD3", "#7FBA7A", "#FFCE73", "#FFA2C0", "#F45252"];
     return (
         <Box
@@ -65,17 +71,19 @@ const PropertyReferrals = ({ productSoldTop5ThisMonth, totalThisMonth }) => {
             </Typography>
 
             <Stack my="20px" direction="column" gap={4}>
-                {productSoldTop5ThisMonth.map((pro, index) => (
+                {productSoldTop5ThisMonth.map((pro: any, index: number) => (
                     <ProgressBar
                         key={pro.id}
                         title={pro.ten}
                         percentage={
-                            index < productSoldTop5ThisMonth.lenth - 1
+                            index < productSoldTop5ThisMonth.length - 1
                                 ? Math.floor(
-                                      (pro.tonggiatri * 100) / totalThisMonth
+                                      (pro.tonggiatri * 100) /
+                                          (totalThisMonth || 0)
                                   )
                                 : Math.ceil(
-                                      (pro.tonggiatri * 100) / totalThisMonth
+                                      (pro.tonggiatri * 100) /
+                                          (totalThisMonth || 0)
                                   )
                         }
                         color={colors[index]}
