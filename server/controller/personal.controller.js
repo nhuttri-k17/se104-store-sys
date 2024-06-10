@@ -24,7 +24,7 @@ const getIdentity = async (req, res) => {
             },
         });
 
-        res.json({ ...staff, email });
+        return res.json({ ...staff, email });
     } catch (error) {
         console.error("Error getting identity", error);
         res.status(500).json({

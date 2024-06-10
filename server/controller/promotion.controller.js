@@ -10,9 +10,9 @@ const getAllPromotions = async (req, res) => {
                 tinhtrang: true,
             },
         });
-        res.json(all);
+        return res.json(all);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error getting promo ${error.message}`,
         });
     }
@@ -38,9 +38,9 @@ const getAllAvailablePromo = async (req, res) => {
                 ],
             },
         });
-        res.json(all);
+        return res.json(all);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error getting available promo ${error.message}`,
         });
     }
@@ -58,9 +58,9 @@ const getPromotionDetail = async (req, res) => {
         if (!promotion) {
             return res.status(404).json({ message: "Promotion not found" });
         }
-        res.json(promotion);
+        return res.json(promotion);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error getting promo detail ${error.message}`,
         });
     }
@@ -78,9 +78,9 @@ const createPromotion = async (req, res) => {
                 tinhtrang: true,
             },
         });
-        res.json(promotion);
+        return res.json(promotion);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error creating promo ${error.message}`,
         });
     }
@@ -101,9 +101,9 @@ const updatePromotion = async (req, res) => {
                 giatri: parseInt(giatri, 10),
             },
         });
-        res.json(promotion);
+        return res.json(promotion);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error updating promo ${error.message}`,
         });
     }
@@ -120,9 +120,9 @@ const deletePromotion = async (req, res) => {
                 tinhtrang: false,
             },
         });
-        res.json(promotion);
+        return res.json(promotion);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error deleting promo ${error.message}`,
         });
     }

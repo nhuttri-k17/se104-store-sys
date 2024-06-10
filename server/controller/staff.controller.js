@@ -17,9 +17,9 @@ const getAllStaffs = async (req, res) => {
                 xoa: false,
             },
         });
-        res.json(all);
+        return res.json(all);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error getting staff ${error.message}`,
         });
     }
@@ -43,9 +43,9 @@ const getStaffDetail = async (req, res) => {
         if (!staff) {
             return res.status(404).json({ message: "Staff not found" });
         }
-        res.json({ ...staff, email: acc.email });
+        return res.json({ ...staff, email: acc.email });
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error getting staff detail ${error.message}`,
         });
     }
@@ -91,9 +91,9 @@ const createStaff = async (req, res) => {
         if (!assignAccount) {
             return res.status(400).json({ message: "Assign account failed" });
         }
-        res.json(staff);
+        return res.json(staff);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error creating staff ${error.message}`,
         });
     }
@@ -137,9 +137,9 @@ const deleteStaff = async (req, res) => {
         if (!account) {
             return res.status(404).json({ message: "Account not found" });
         }
-        res.json(staff);
+        return res.json(staff);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error deleting staff ${error.message}`,
         });
     }
@@ -181,9 +181,9 @@ const updateStaff = async (req, res) => {
         if (!staff) {
             return res.status(404).json({ message: "Staff not found" });
         }
-        res.json(staff);
+        return res.json(staff);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error updating staff ${error.message}`,
         });
     }

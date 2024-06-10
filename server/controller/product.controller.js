@@ -111,7 +111,7 @@ const createProduct = async (req, res) => {
             },
         });
 
-        res.json(product);
+        return res.json(product);
     } catch (error) {
         res.status(500).json({
             message: `Error creating products ${error.message}`,
@@ -134,7 +134,7 @@ const getProductDetail = async (req, res) => {
         if (!product) {
             return res.status(404).json({ message: "Product not found" });
         }
-        res.json({ ...product.details, ...product });
+        return res.json({ ...product.details, ...product });
     } catch (error) {
         res.status(500).json({
             message: `Error getting product detail ${error.message}`,
@@ -227,7 +227,7 @@ const updateProduct = async (req, res) => {
                 },
             });
             const { details, ...rest } = pro;
-            res.json({ ...details, ...rest });
+            return res.json({ ...details, ...rest });
         } else if (store && tinhtrang === "đang bán") {
             await prisma.sanphamcuahang.update({
                 where: {
@@ -249,9 +249,10 @@ const updateProduct = async (req, res) => {
                 },
             });
             const { details, ...rest } = pro;
-            res.json({ ...details, ...rest });
+            return res.json({ ...details, ...rest });
+        } else {
+            return res.json(product);
         }
-        res.json(product);
     } catch (error) {
         res.status(500).json({
             message: `Error updating product ${error.message}`,
@@ -288,7 +289,7 @@ const deleteProduct = async (req, res) => {
             return res.status(404).json({ message: "Product not found" });
         }
 
-        res.json(product);
+        return res.json(product);
     } catch (error) {
         res.status(500).json({
             message: `Error deleting products ${error.message}`,

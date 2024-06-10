@@ -23,9 +23,9 @@ const loginAccount = async (req, res) => {
             return res.status(401).json({ message: "Password is incorrect" });
         }
         const { password: p, ...accountWithoutPassword } = account;
-        res.json(accountWithoutPassword);
+        return res.json(accountWithoutPassword);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error auth for login ${error.message}`,
         });
     }
@@ -52,9 +52,9 @@ const loginCustomerAccount = async (req, res) => {
         }
 
         const { password: p, ...accountWithoutPassword } = account;
-        res.json(accountWithoutPassword);
+        return res.json(accountWithoutPassword);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error auth for login ${error.message}`,
         });
     }
@@ -90,9 +90,9 @@ const registerCustomerAccount = async (req, res) => {
                 khachhangId: customer.id,
             },
         });
-        res.json(account);
+        return res.json(account);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error register customer account ${error.message}`,
         });
     }
@@ -113,9 +113,9 @@ const upsertCustomer = async (req, res) => {
                 ten: name,
             },
         });
-        res.json(customer);
+        return res.json(customer);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error upsert customer ${error.message}`,
         });
     }

@@ -8,9 +8,9 @@ const getAllAccounts = async (req, res) => {
     try {
         const all = await prisma.taikhoan.findMany();
         const allWithoutPasswords = all.map(({ password, ...rest }) => rest);
-        res.json(allWithoutPasswords);
+        return res.json(allWithoutPasswords);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error getting accounts ${error.message}`,
         });
     }
@@ -27,9 +27,9 @@ const getEmptyAccount = async (req, res) => {
         const emptyWithoutPasswords = empty.map(
             ({ password, ...rest }) => rest
         );
-        res.json(emptyWithoutPasswords);
+        return res.json(emptyWithoutPasswords);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error getting empty account ${error.message}`,
         });
     }
@@ -47,9 +47,9 @@ const getAccountBasedOnStaff = async (req, res) => {
             return res.status(404).json({ message: "Account not found" });
         }
         const { password: p, ...accountWithoutPassword } = account;
-        res.json(accountWithoutPassword);
+        return res.json(accountWithoutPassword);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error get account of staff ${error.message}`,
         });
     }
@@ -77,9 +77,11 @@ const createAccount = async (req, res) => {
             },
         });
         const { password: p, ...accountWithoutPassword } = account;
-        res.json(accountWithoutPassword);
+        return res.json(accountWithoutPassword);
     } catch (error) {
-        res.status(500).json({ message: `Error creating ${error.message}` });
+        return res
+            .status(500)
+            .json({ message: `Error creating ${error.message}` });
     }
 };
 
@@ -91,9 +93,9 @@ const getAccountDetail = async (req, res) => {
                 id,
             },
         });
-        res.json(account);
+        return res.json(account);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error get accout detail ${error.message}`,
         });
     }
@@ -114,9 +116,9 @@ const changePasswordAccount = async (req, res) => {
         if (!account) {
             return res.status(404).json({ message: "Account not found" });
         }
-        res.json(account);
+        return res.json(account);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error changing password ${error.message}`,
         });
     }
@@ -130,9 +132,11 @@ const deleteAccount = async (req, res) => {
                 id,
             },
         });
-        res.json(account);
+        return res.json(account);
     } catch (error) {
-        res.status(500).json({ message: `Error delete acc ${error.message}` });
+        return res
+            .status(500)
+            .json({ message: `Error delete acc ${error.message}` });
     }
 };
 

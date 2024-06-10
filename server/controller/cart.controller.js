@@ -82,7 +82,7 @@ const onAddCart = async (req, res) => {
             return res.json(cart);
         }
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error add cart ${error.message}`,
         });
     }
@@ -139,7 +139,7 @@ const updateCart = async (req, res) => {
             },
         });
     } catch (err) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error update cart ${err.message}`,
         });
     }
@@ -183,9 +183,9 @@ const getCartDetail = async (req, res) => {
             })
             .filter((item) => item.soluong > 0);
 
-        res.json(cartItems);
+        return res.json(cartItems);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error get cart detail ${error.message}`,
         });
     }
@@ -199,9 +199,9 @@ const clearCart = async (req, res) => {
                 giohangId,
             },
         });
-        res.json(cart);
+        return res.json(cart);
     } catch {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error clear cart detail ${error.message}`,
         });
     }
@@ -219,9 +219,9 @@ const removeItem = async (req, res) => {
                 },
             },
         });
-        res.json(cart);
+        return res.json(cart);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error remove item ${error.message}`,
         });
     }

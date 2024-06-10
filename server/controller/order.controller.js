@@ -10,9 +10,9 @@ const getAllOrders = async (req, res) => {
                 chitietdonhang: true,
             },
         });
-        res.json(orders);
+        return res.json(orders);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error getting orders ${error.message}`,
         });
     }
@@ -116,10 +116,10 @@ const createOrder = async (req, res) => {
             })),
         });
 
-        res.json(order);
+        return res.json(order);
     } catch (error) {
         console.error(error);
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error creating order ${error.message}`,
         });
     }
@@ -170,10 +170,10 @@ const getOrderDetail = async (req, res) => {
                 })),
             };
 
-            res.json(response);
+            return res.json(response);
         }
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error getting order detail ${error.message}`,
         });
     }
@@ -191,9 +191,9 @@ const updateOrder = async (req, res) => {
                 tinhtrang,
             },
         });
-        res.json(order);
+        return res.json(order);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error updating order ${error.message}`,
         });
     }
@@ -234,10 +234,10 @@ const getOrderOfCustomer = async (req, res) => {
             return res.status(404).json([]);
         }
 
-        res.json(orders);
+        return res.json(orders);
     } catch (error) {
         console.error(error);
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error getting order of customer ${error.message}`,
         });
     }

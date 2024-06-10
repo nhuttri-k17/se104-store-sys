@@ -5,9 +5,9 @@ const prisma = new PrismaClient();
 const getAllStrategy = async (req, res) => {
     try {
         const all = await prisma.chienluoc.findMany();
-        res.json(all);
+        return res.json(all);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error getting strategy ${error.message}`,
         });
     }
@@ -28,9 +28,9 @@ const getStrategyDetail = async (req, res) => {
             console.error("Strategy not found");
             return res.status(404).json({ message: "Strategies not found" });
         }
-        res.json(strategy);
+        return res.json(strategy);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error getting strategy detail ${error.message}`,
         });
     }
@@ -49,9 +49,9 @@ const createStrategy = async (req, res) => {
         if (!strategy) {
             return res.status(400).json({ message: "Create strategy failed" });
         }
-        res.json(strategy);
+        return res.json(strategy);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error creating strategy ${error.message}`,
         });
     }
@@ -73,9 +73,9 @@ const updateStrategy = async (req, res) => {
         if (!strategy) {
             return res.status(404).json({ message: "Strategy not found" });
         }
-        res.json(strategy);
+        return res.json(strategy);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error updating strategy ${error.message}`,
         });
     }
@@ -92,9 +92,9 @@ const deleteStrategy = async (req, res) => {
         if (!strategy) {
             return res.status(404).json({ message: "Strategy not found" });
         }
-        res.json(strategy);
+        return res.json(strategy);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error deleting strategy ${error.message}`,
         });
     }

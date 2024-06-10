@@ -152,7 +152,7 @@ const totalRevenue = async (req, res) => {
     const customer = (await totalCustomer()) || 0;
     const this_month_customer = (await newMonthCustomerFromNow(0)) || 0;
     const top_product_sale = (await topProductSale()) || [];
-    res.json({
+    return res.json({
         total_sale,
         last_month_sale,
         this_month_sale,

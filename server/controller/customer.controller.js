@@ -13,9 +13,9 @@ const prisma = new PrismaClient();
 const getAllCustomer = async (req, res) => {
     try {
         const all = await prisma.khachhang.findMany();
-        res.json(all);
+        return res.json(all);
     } catch (error) {
-        res.status(500).json({ message: `Error ${error.message}` });
+        return res.status(500).json({ message: `Error ${error.message}` });
     }
 };
 
@@ -53,9 +53,9 @@ const createCustomer = async (req, res) => {
                 .status(400)
                 .json({ message: "Failed to create customer" });
         }
-        res.json(khachhang);
+        return res.json(khachhang);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error create customer ${error.message}`,
         });
     }
@@ -72,9 +72,9 @@ const getCustomerById = async (req, res) => {
         if (!kh) {
             return res.status(404).json({ message: "Account not found" });
         }
-        res.json(kh);
+        return res.json(kh);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error get customer by id ${error.message}`,
         });
     }
@@ -97,9 +97,9 @@ const deleteCustomer = async (req, res) => {
                 id: kh.giohangId,
             },
         });
-        res.json(kh);
+        return res.json(kh);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error deleting customer ${error.message}`,
         });
     }
@@ -120,9 +120,9 @@ const getCustomerByEmail = async (req, res) => {
             return res.status(404).json({ message: "Account not found" });
         }
 
-        res.json(kh);
+        return res.json(kh);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error get customer email ${error.message}`,
         });
     }
@@ -164,9 +164,9 @@ const updateCustomerInfo = async (req, res) => {
         if (!kh) {
             return res.status(404).json({ message: "Customer not found" });
         }
-        res.json(kh);
+        return res.json(kh);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error update customer info ${error.message}`,
         });
     }

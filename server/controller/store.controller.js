@@ -116,9 +116,9 @@ const getAllProducts = async (req, res) => {
         }));
         res.setHeader("x-total-count", count.toString());
         res.setHeader("Access-Control-Expose-Headers", "x-total-count");
-        res.status(200).json(pro);
+        return res.status(200).json(pro);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error get store products ${error.message}`,
         });
     }
@@ -183,9 +183,9 @@ const getAllProductsWithoutQuery = async (req, res) => {
             id: product.id,
         }));
 
-        res.json(pro);
+        return res.json(pro);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error get store products ${error.message}`,
         });
     }
@@ -221,9 +221,9 @@ const getAllProductsWithQuery = async (req, res) => {
             tinhtrang: product.sanphamkho.tinhtrang,
             id: product.id,
         }));
-        res.json(pro);
+        return res.json(pro);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error get store products ${error.message}`,
         });
     }
@@ -254,9 +254,9 @@ const getProductBasedOnGenre = async (req, res) => {
             tinhtrang: product.sanphamkho.tinhtrang,
             id: product.id,
         }));
-        res.json(pro);
+        return res.json(pro);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error get store products ${error.message}`,
         });
     }
@@ -287,9 +287,9 @@ const getProductDetail = async (req, res) => {
             tinhtrang: product.sanphamkho.tinhtrang,
             id: product.id,
         };
-        res.json(pro);
+        return res.json(pro);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error get product detail ${error.message}`,
         });
     }
@@ -316,9 +316,9 @@ const addNewProduct = async (req, res) => {
         if (!pro) {
             return res.status(404).json({ message: "Failed to add" });
         }
-        res.json(pro);
+        return res.json(pro);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error adding product from shop ${error.message}`,
         });
     }
@@ -407,9 +407,9 @@ const updateProduct = async (req, res) => {
             },
         });
 
-        res.json(product);
+        return res.json(product);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error updating products ${error.message}`,
         });
     }
@@ -442,9 +442,9 @@ const deleteProduct = async (req, res) => {
             return res.status(404).json({ message: "Product not found" });
         }
 
-        res.json(product);
+        return res.json(product);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: `Error deleting products ${error.message}`,
         });
     }
