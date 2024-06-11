@@ -64,9 +64,8 @@ const MenuItems = () => {
                 >
                     <div className="py-2 bg-white text-[#999] rounded-sm border border-main-color shadow-sm">
                         {items.map((item, index) => (
-                            <div onClick={() => setOpen(false)}>
+                            <div onClick={() => setOpen(false)} key={index}>
                                 <Link
-                                    key={index}
                                     className="block px-4 py-2 mt-2 text-[1.5rem] bg-white md:mt-0 focus:text-gray-900 hover:bg-[#eee] focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                                     href={item.link}
                                 >

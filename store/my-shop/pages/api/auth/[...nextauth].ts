@@ -15,19 +15,17 @@ declare module "next-auth" {
             id?: string | null | undefined;
             giohangId?: string | null | undefined;
             sdt?: string | null | undefined;
+            diachi?: string | null | undefined;
         } & DefaultSession["user"];
     }
 }
 
 export const authOptions: NextAuthOptions = {
-    // pages: {
-    //     signIn: "/login",
-    //     // signOut: "/signout",
-    //     // error: "/auth-error",
-    // },
     debug: true,
     session: {
         strategy: "jwt",
+        maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+        updateAge: 24 * 60 * 60, // 24 hours
     },
     providers: [
         CredentialsProvider({
@@ -44,11 +42,6 @@ export const authOptions: NextAuthOptions = {
             async authorize(credentials: any) {
                 const email = credentials?.email;
                 const password = credentials?.password;
-
-                // if (!credentials?.email || !credentials?.password) {
-                //     // return { email, password };
-                //     return null;
-                // }
 
                 const response = await fetch(
                     `${baseUrl}/store_customers/login`,
@@ -67,9 +60,6 @@ export const authOptions: NextAuthOptions = {
                 }
 
                 const user = await response.json();
-                // if (!user) {
-                //     return null;
-                // }
 
                 return {
                     ...user,

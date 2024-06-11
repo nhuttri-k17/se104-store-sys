@@ -1,5 +1,5 @@
 import "@/styles/globals.css";
-import type { AppProps, AppPropsWithLayout } from "next/app";
+import type { AppPropsWithLayout, AppProps } from "next/app";
 import React from "react";
 import { Toaster } from "react-hot-toast";
 import { Layout } from "@/components";
@@ -11,7 +11,8 @@ export default function App({
     pageProps: { session, ...pageProps },
 }: AppPropsWithLayout) {
     const getLayout =
-        Component.getLayout || ((page: any) => <Layout>{page}</Layout>);
+        Component.getLayout ||
+        ((page: React.ReactNode) => <Layout>{page}</Layout>);
     return (
         <SessionProvider session={session}>
             <StateContext>

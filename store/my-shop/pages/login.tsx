@@ -6,7 +6,7 @@ import { GetServerSidePropsContext, NextPageWithLayout } from "next";
 import toast from "react-hot-toast";
 import clsx from "clsx";
 import { validateEmail, validatePassword } from "@/lib/validateForm";
-import { pageUrl } from "@/constants/url";
+import Link from "next/link";
 
 const LoginPage: NextPageWithLayout = () => {
     const router = useRouter();
@@ -180,12 +180,12 @@ const LoginPage: NextPageWithLayout = () => {
 
                 <p className="mt-10 text-center text-sm text-gray-500">
                     Chưa có tài khoản?{" "}
-                    <a
+                    <Link
                         href={`/register`}
                         className="font-semibold leading-6 text-[#f02d34] hover:text-[#cb4e52]"
                     >
                         Đăng ký
-                    </a>
+                    </Link>
                 </p>
             </div>
         </div>

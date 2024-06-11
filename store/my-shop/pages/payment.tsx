@@ -27,6 +27,9 @@ const Payment: NextPageWithLayout = ({ promotions }: any) => {
     const [sdt, setSdt] = useState(
         session?.user?.sdt !== "" ? session?.user?.sdt : "09312456231"
     );
+    const [diachi, setDiachi] = useState(
+        session?.user?.diachi !== "" ? session?.user?.diachi : "Hà Nội"
+    );
     useEffect(() => {
         if (status !== "authenticated") {
             router.push("/login");
@@ -231,6 +234,19 @@ const Payment: NextPageWithLayout = ({ promotions }: any) => {
                             value={sdt}
                             onChange={(e) => setSdt(e.target.value)}
                             type="number"
+                            color="info"
+                            variant="outlined"
+                        />
+                    </div>
+                    <div className="w-full">
+                        <Typography className="text-[#11142d] text-[16px] my-[10px] font-[700]">
+                            Nhập địa chỉ
+                        </Typography>
+                        <TextField
+                            fullWidth
+                            value={diachi}
+                            onChange={(e) => setDiachi(e.target.value)}
+                            type="text"
                             color="info"
                             variant="outlined"
                         />
