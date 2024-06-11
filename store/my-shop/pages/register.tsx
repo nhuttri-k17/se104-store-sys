@@ -128,6 +128,7 @@ const Register: NextPageWithLayout = () => {
                 email: field.email,
                 name: field.name,
                 password: field.password,
+                sdt: field.sdt,
             }),
         });
         if (res.ok) {
@@ -344,7 +345,7 @@ const Register: NextPageWithLayout = () => {
                 <p className="mt-10 text-center text-sm text-gray-500">
                     Đã có tài khoản?{" "}
                     <a
-                        href={`${pageUrl}/login`}
+                        href={`/login`}
                         className="font-semibold leading-6 text-[#f02d34] hover:text-[#cb4e52]"
                     >
                         Đăng nhập

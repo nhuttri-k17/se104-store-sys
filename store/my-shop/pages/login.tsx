@@ -181,7 +181,7 @@ const LoginPage: NextPageWithLayout = () => {
                 <p className="mt-10 text-center text-sm text-gray-500">
                     Chưa có tài khoản?{" "}
                     <a
-                        href={`${pageUrl}/register`}
+                        href={`/register`}
                         className="font-semibold leading-6 text-[#f02d34] hover:text-[#cb4e52]"
                     >
                         Đăng ký

@@ -4,6 +4,7 @@ import { TiDeleteOutline } from "react-icons/ti";
 import { useStateContext } from "../context/StateContext";
 import clsx from "clsx";
 import { useSession } from "next-auth/react";
+import { baseUrl } from "@/constants/url";
 
 const CartItem = ({ item }: any) => {
     const { data: session } = useSession();
@@ -11,7 +12,7 @@ const CartItem = ({ item }: any) => {
 
     useEffect(() => {
         fetch(
-            `http://localhost:8080/store_customers/cart_update/${session?.user.giohangId}`,
+            `${baseUrl}/store_customers/cart_update/${session?.user.giohangId}`,
             {
                 method: "POST",
                 body: JSON.stringify({
@@ -74,7 +75,7 @@ const CartItem = ({ item }: any) => {
                             onClick={async () => {
                                 onRemove(item);
                                 await fetch(
-                                    `http://localhost:8080/store_customers/cart_item/${session?.user.giohangId}`,
+                                    `${baseUrl}/store_customers/cart_item/${session?.user.giohangId}`,
                                     {
                                         method: "POST",
                                         body: JSON.stringify({
