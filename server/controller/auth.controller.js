@@ -64,7 +64,7 @@ const loginCustomerAccount = async (req, res) => {
 
 const registerCustomerAccount = async (req, res) => {
     try {
-        const { email, password, name } = req.body;
+        const { email, password, name, sdt = "0901234567" } = req.body;
 
         const existedAccount = await prisma.taikhoankhachhang.findFirst({
             where: {
@@ -79,6 +79,7 @@ const registerCustomerAccount = async (req, res) => {
             data: {
                 email,
                 ten: name,
+                sdt,
             },
         });
 
