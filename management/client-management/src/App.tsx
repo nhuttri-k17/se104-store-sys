@@ -82,6 +82,11 @@ function App() {
                         <DevtoolsProvider>
                             <Refine
                                 dataProvider={dataProvider(`${baseUrl}/api/v1`)}
+                                Title={({ collapsed }) => (
+                                    <div>
+                                        <span>Gloss And Glam</span>
+                                    </div>
+                                )}
                                 notificationProvider={notificationProvider}
                                 routerProvider={routerBindings}
                                 authProvider={authProvider}
