@@ -137,7 +137,7 @@ model donhang {
   khachhang khachhang @relation(fields: [khachhangId], references: [id], onDelete: Cascade)
   khachhangId String
   ngaylap DateTime @default(now())
-  diachi String @db.Text
+  diachi String? @db.Text
   chitietdonhang chitietdonhang[]
   tonggiatri Int
   tinhtrang String
