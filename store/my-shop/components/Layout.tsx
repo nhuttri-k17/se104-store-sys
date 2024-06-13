@@ -7,7 +7,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     return (
         <div className="layout">
             <Head>
-                <title>Shop Store</title>
+                <title>Gloss and Glam</title>
             </Head>
             <header>
                 <Navbar />
