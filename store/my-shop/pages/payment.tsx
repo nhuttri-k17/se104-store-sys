@@ -14,6 +14,8 @@ import { useSession } from "next-auth/react";
 import { set } from "date-fns";
 import { NextPageWithLayout } from "next";
 import { baseUrl } from "@/constants/url";
+import Link from "next/link";
+import { Footer } from "@/components";
 
 const Payment: NextPageWithLayout = ({ promotions }: any) => {
     const router = useRouter();
@@ -309,8 +311,37 @@ const Payment: NextPageWithLayout = ({ promotions }: any) => {
     );
 };
 
+const PaymentNavbar = () => {
+    const router = useRouter();
+    return (
+        <div className="navbar-container fixed items-center z-9999 bg-[#fff] shadow-sm">
+            <p className="logo ps-32">
+                <Link
+                    href={"/"}
+                    className={clsx("text-[1.5rem]", {
+                        "font-bold": router.pathname === "/",
+                    })}
+                >
+                    Trang chủ
+                </Link>
+            </p>
+        </div>
+    );
+};
+
 Payment.getLayout = function getLayout(page) {
-    return <div>{page}</div>;
+    return (
+        <div>
+            <header>
+                {" "}
+                <PaymentNavbar />
+            </header>
+            <main> {page}</main>
+            <footer>
+                <Footer />
+            </footer>
+        </div>
+    );
 };
 
 export default Payment;
