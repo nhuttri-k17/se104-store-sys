@@ -97,7 +97,11 @@ const getAllProducts = async (req, res) => {
             take: _end - _start,
             skip: parseInt(_start, 10),
             orderBy: {
-                [_sort]: _order,
+                sanphamkho: {
+                    details: {
+                        [_sort]: _order,
+                    },
+                },
             },
             include: {
                 sanphamkho: {
