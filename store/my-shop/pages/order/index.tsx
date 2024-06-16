@@ -80,7 +80,7 @@ const OrderPage: NextPageWithLayout = ({
             setOrderState(newOrders);
             console.log(newOrders);
 
-            await fetch(`http://localhost:8080/api/v1/orders/${id}`, {
+            await fetch(`${baseUrl}/api/v1/orders/${id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
