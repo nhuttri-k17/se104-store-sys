@@ -105,7 +105,7 @@ model khuyenmai {
   giatri Int
   ngaybatdau DateTime
   ngayketthuc DateTime
-  tinhtrang Boolean
+  tinhtrang Boolean @default(true)
   donhang donhang[]
 }
 

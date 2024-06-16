@@ -2,6 +2,7 @@ import express from "express";
 import * as dotenv from "dotenv";
 import cors from "cors";
 import { PrismaClient } from "@prisma/client";
+import dayjs from "dayjs";
 
 import productRouter from "./routes/product.routes.js";
 import authRouter from "./routes/auth.routes.js";
@@ -33,6 +34,13 @@ app.get("/", async (req, res) => {
             email: "alice@gmail.com",
         },
     });
+
+    const pr = await prisma.khuyenmai.findMany();
+    let promos = [];
+    if (pr.length <= 1) {
+        promos = getRandomPromo();
+    }
+
     if (emailExist) {
         return res.json(emailExist);
     }
@@ -52,7 +60,8 @@ app.get("/", async (req, res) => {
             password: "1234567",
         },
     });
-    res.json(user);
+
+    res.json({ user, promos });
 });
 
 app.use("/api/v1/dashboard", dashboardRouter);
@@ -76,3 +85,32 @@ app.listen(8080, () => {
         `Server is running on port if you run local http://localhost:8080`
     );
 });
+
+function getRandomPromo() {
+    const promoName = [
+        "DEALOFTHEDAY",
+        "SALEOFF",
+        "DISCOUNT",
+        "GIFT",
+        "FREE",
+        "BONUS",
+        "LUCKY",
+        "WIN",
+        "LUCKYDRAW",
+        "LUCKYSPIN",
+    ];
+    return promoName.map(async (name) => {
+        await prisma.khuyenmai.create({
+            data: {
+                ten: name,
+                giatri: Math.floor(Math.random() * (90 - 10 + 1)) + 10,
+                ngaybatdau: dayjs()
+                    .add(Math.floor(Math.random() * (2 * 10 + 1)) - 10, "day")
+                    .toDate(),
+                ngayketthuc: dayjs()
+                    .add(10 + Math.floor(Math.random() * (2 * 10 + 1)), "day")
+                    .toDate(),
+            },
+        });
+    });
+}
