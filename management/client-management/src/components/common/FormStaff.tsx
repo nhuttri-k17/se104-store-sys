@@ -12,6 +12,7 @@ import Button from "@mui/material/Button";
 import { FormStaffProps } from "../../interfaces/common";
 import CustomButton from "./CustomButton";
 import { useEffect, useState } from "react";
+import { baseUrl } from "../../constants/url";
 
 interface AccountData {
     id: string;
@@ -40,7 +41,7 @@ const FormStaff = ({
         const fetchAccountData = async () => {
             try {
                 const response = await fetch(
-                    "http://localhost:8080/api/v1/accounts/empty",
+                    `${baseUrl}/api/v1/accounts/empty`,
                     {
                         method: "GET",
                         headers: { "Content-Type": "application/json" },
@@ -50,7 +51,7 @@ const FormStaff = ({
                 setAccountData(data);
                 if (iSEdit) {
                     const res = await fetch(
-                        `http://localhost:8080/api/v1/accounts/staff/${id}`,
+                        `${baseUrl}/api/v1/accounts/staff/${id}`,
                         {
                             method: "GET",
                             headers: { "Content-Type": "application/json" },
